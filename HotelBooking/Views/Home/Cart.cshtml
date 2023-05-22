@@ -1,0 +1,188 @@
+﻿
+<!doctype html>
+<html ng-app="lobbyApp">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <title>My Cart | Order Online Fast Food & Pizza</title>
+    <!-- Fonts Here-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
+    <!-- Fonts here-->
+    <!-- Style Here -->
+    <link rel="stylesheet" href="~/css/slick.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+
+
+</head>
+
+<body ng-controller="lobbyController" ng-init="init()">
+    <div class="wrapper">
+        <!-- Header Start Here -->
+        <header id="Header">
+            <div class="main_header inner_page">
+                <div class="top_nav" id="navbar">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="logo">
+                                    <a asp-controller="Home" asp-action="Index"title="Crave Ordering"><img src="../images/logo.png" alt="Crave Ordering"></a>
+                                </div>
+                                <div class="nav_manu">
+                                    <div class="Menu_list">
+                                        <ul class="menu">
+                                            <li><a class="trans hvr-underline-from-left" asp-controller="Home" asp-action="Index">Home</a></li>
+                                            <!-- <li><a href="about.html" class="trans">About</a></li>
+                                            <li><a href="login.html" class="trans">Login</a></li>
+                                            <li><a href="login.html" class="trans">Register</a></li> -->
+                                        </ul>
+                                    </div>
+                                    <div class="Cart">
+                                        <a title="Cart" asp-controller="Home" asp-action="Menu">
+                                            <span class="Cart_count">Cart</span>
+                                            <!-- <i class="fa fa-shopping-cart" aria-hidden="true"></i> -->
+                                            <img class="cart_img" src="../images/cart_1.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="burger" class="open-main-nav">
+                    <span class="burger"></span>
+                </button>
+                <div class="H_banner">
+                    <div class="main_pitch">
+                        <h1 class="page_title">My Cart</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="device">
+                <nav class="main-nav" id="main-nav">
+                    <div class="logo">
+                        <a asp-controller="Home" asp-action="Index" title="Crave Ordering"><img src="../images/logoBlack.png" alt="Crave Ordering"></a>
+                    </div>
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- Header Start Here -->
+        <!-- breadcum section -->
+        <div class="breadcum">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="main_breadcum">
+                            <ul>
+                                <li><a asp-controller="Home" asp-action="Index" class="trans" title="Home">Home</a></li>
+                                <li>Cart</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcum section -->
+        <!-- Our cart section -->
+        <section>
+            <div class="main_cart">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="main_Ourmenu">
+                                <h2 class="title">Cart</h2>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="cart_list">
+                                <ul class="inner_cartlist">
+                                    <li class="header">
+                                        <div class="main_head">
+                                            <div class="edit">&nbsp;</div>
+                                            <div class="pro_name">
+                                                <h4>Product</h4>
+                                            </div>
+                                            <div class="pro_qty">
+                                                <h4>Qty</h4>
+                                            </div>
+                                            <div class="pro_price">
+                                                <h4>Price</h4>
+                                            </div>
+                                            <div class="pro_total">
+                                                <h4>Total</h4>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="rows" ng-repeat="basket in basketProducts">
+                                        <div class="edit">
+                                            <div class="edit_div">
+                                                <a ng-click="deleteFromBasket(basket.product.id)" class="trans del" title="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                @*<a class="trans edit_new" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>*@
+                                            </div>
+                                        </div>
+                                        <div class="pro_name">
+                                            <div class="products">
+                                                <div class="pro_img"><img ng-src="{{basket.product.image}}" class="absoImg" alt=""></div>
+                                                <div class="pro_descr">
+                                                    <h3 class="pro_title"><a href="#" title="Mexican Pizza" class="trans">{{basket.product.name}}</a></h3>
+                                                  @*  <p class="pro_dtls">original & favorite specialty pizza topped</p>
+                                                    <p class="size"><span class="size">Size :</span>Medium</p>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pro_qty">
+                                            <div class="number-input">
+
+                                                <button ng-click="increaseBasketQuantity(basket)" class="plus"></button>
+                                                <input class="quantity" min="0" name="quantity" value="{{basket.quantity}}" type="number">
+                                                <button ng-click="decreaseBasketQuantity(basket)"></button>
+
+                                            </div>
+                                        </div>
+                                        <div class="pro_price">
+                                            <h4>$ {{basket.price}}</h4>
+                                        </div>
+                                        <div class="pro_total">
+                                            <h4>$ {{basket.price * basket.quantity}}</h4>
+                                        </div>
+                                    </li>
+                                </ul>
+                                
+                                <div class="checkout">
+                                    <p class="order_total"><span>Total :</span> ${{basketTotal}}</p>
+                                    <div class="btn_checkout">
+                                        <a class="trans red_btn squre-btn hvr-ripple-out" title="Proceed to Checkout">Proceed to Checkout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/template/bootstrap.min.js"></script>
+    <script src="~/js/template/custome.js"></script>
+    <script src="~/js/template/slick.js"></script>
+    <script src="~/js/angular.min.js"> </script>
+    <script src="~/js/template/jquery.validate.min.js"></script>
+    <script src="~/js/file.js"></script>
+
+</body>
+
+</html>
