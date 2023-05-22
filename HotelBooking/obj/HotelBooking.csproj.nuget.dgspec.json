@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Geekster PC\\Desktop\\STEPPROJECTS\\Reest\\HotelBooking\\HotelBooking.csproj": {}
+    "C:\\Users\\zurakusrashvili\\Source\\Repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Geekster PC\\Desktop\\STEPPROJECTS\\Reest\\HotelBooking\\HotelBooking.csproj": {
+    "C:\\Users\\zurakusrashvili\\Source\\Repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Geekster PC\\Desktop\\STEPPROJECTS\\Reest\\HotelBooking\\HotelBooking.csproj",
+        "projectUniqueName": "C:\\Users\\zurakusrashvili\\Source\\Repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj",
         "projectName": "HotelBooking",
-        "projectPath": "C:\\Users\\Geekster PC\\Desktop\\STEPPROJECTS\\Reest\\HotelBooking\\HotelBooking.csproj",
-        "packagesPath": "C:\\Users\\Geekster PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Geekster PC\\Desktop\\STEPPROJECTS\\Reest\\HotelBooking\\obj\\",
+        "projectPath": "C:\\Users\\zurakusrashvili\\Source\\Repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj",
+        "packagesPath": "C:\\Users\\zurakusrashvili\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zurakusrashvili\\Source\\Repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Geekster PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\zurakusrashvili\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

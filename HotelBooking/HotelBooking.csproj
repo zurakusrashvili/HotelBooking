@@ -89,4 +89,9 @@
 	  <TypeScriptCompile Include="wwwroot\js\jquery\jquery.d.ts" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Models\Booking\" />
+	  <Folder Include="Models\RoomType\" />
+	</ItemGroup>
+
 </Project>
