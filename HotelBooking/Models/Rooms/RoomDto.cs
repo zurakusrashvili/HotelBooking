@@ -6,8 +6,6 @@ namespace HotelBooking.Models.Rooms
     public class RoomDto
     {
         public int Id { get; set; }
-        public int Number { get; set; }
-        public int RoomTypeId { get; set; }
         public int HotelId { get; set; }
         public RoomType RoomType { get; set; }
         public decimal PricePerNight { get; set; }

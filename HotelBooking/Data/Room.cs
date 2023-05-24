@@ -5,10 +5,7 @@ namespace HotelBooking.Data
     public class Room
     {
         public int Id { get; set; }
-        public int Number { get; set; }
-
-        [ForeignKey(nameof(RoomTypeId))]
-        public int RoomTypeId { get; set; }
+        public string Name { get; set; }
 
         [ForeignKey(nameof(HotelId))]
         public int HotelId { get; set; }

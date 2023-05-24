@@ -8,5 +8,8 @@
         public DateTime CheckOutDate { get; set; }
         public decimal TotalPrice { get; set; }
         public bool IsConfirmed { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerId { get; set; }
+        public string CustomerPhone { get; set; }
     }
 }

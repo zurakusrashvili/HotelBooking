@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r6x2AVkZzhNh/VMkMPvcqEO++0IFHYSeQjzhzelr3ECEM93Wafa6tLwepOFtYFN7X1TG0IMWmPl0ytileQICzA==",
+  "dgSpecHash": "kiq1/SDXm023mxS/QdjOsnomfkRWAB2l8PvJuefqx0QyDZEs+DGyHTcDjK/sd9JfE9n5/mPK9u8vy+oEgnRMhw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\zurakusrashvili\\Source\\Repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj",
+  "projectFilePath": "C:\\Users\\zurakusrashvili\\source\\repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\zurakusrashvili\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\zurakusrashvili\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

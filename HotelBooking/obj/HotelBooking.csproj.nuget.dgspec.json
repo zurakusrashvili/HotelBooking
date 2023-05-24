@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zurakusrashvili\\Source\\Repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj": {}
+    "C:\\Users\\zurakusrashvili\\source\\repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zurakusrashvili\\Source\\Repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj": {
+    "C:\\Users\\zurakusrashvili\\source\\repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zurakusrashvili\\Source\\Repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj",
+        "projectUniqueName": "C:\\Users\\zurakusrashvili\\source\\repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj",
         "projectName": "HotelBooking",
-        "projectPath": "C:\\Users\\zurakusrashvili\\Source\\Repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj",
+        "projectPath": "C:\\Users\\zurakusrashvili\\source\\repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\HotelBooking.csproj",
         "packagesPath": "C:\\Users\\zurakusrashvili\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zurakusrashvili\\Source\\Repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\obj\\",
+        "outputPath": "C:\\Users\\zurakusrashvili\\source\\repos\\zurakusrashvili\\HotelBooking\\HotelBooking\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\zurakusrashvili\\AppData\\Roaming\\NuGet\\NuGet.Config",
