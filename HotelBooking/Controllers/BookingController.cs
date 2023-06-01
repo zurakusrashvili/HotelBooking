@@ -16,40 +16,59 @@ namespace HotelBooking.Controllers
     [ApiController]
     public class BookingController : ControllerBase
     {
-        private readonly IHotelRepository _bookingRepository;
+        private readonly IBookingRepository _bookingRepository;
+        private readonly IRoomsRepository _roomRepository;
         private readonly IMapper _mapper;
 
-        public BookingController(IHotelRepository bookingRepository, IMapper mapper)
+        public BookingController(IBookingRepository bookingRepository,IRoomsRepository roomRepository, IMapper mapper)
         {
             this._bookingRepository = bookingRepository;
+            this._roomRepository = roomRepository;
             this._mapper = mapper;
         }
 
         [HttpGet]
-        [Route("GetAll")]
-        public async Task<ActionResult<IEnumerable<HotelDto>>> GetHotels()
+        public async Task<IActionResult> GetAllBookings()
         {
-            var hotels = await _bookingRepository.GetAllAsync();
-
-            var records = _mapper.Map<List<HotelDto>>(hotels);
-
-            return Ok(records);
+            var bookings = await _bookingRepository.GetAllAsync();
+            return Ok(bookings);
         }
-
-        // GET: api/Categories/5
-        [HttpGet]
-        [Route("GetHotel/{id}")]
-        public async Task<ActionResult<Hotel>> GetHotel(int id)
+        [HttpPost]
+        public async Task<IActionResult> CreateBooking([FromBody] Booking booking)
         {
-            var hotel = await _bookingRepository.GetHotelById(id);
-
-            if (hotel == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return BadRequest(ModelState);
             }
 
-            var hotelDto = _mapper.Map<HotelDto>(hotel);
-            return Ok(hotelDto);
+            var room = await _roomRepository.GetRoomById(booking.RoomID);
+
+            if (room == null || !room.Available)
+            {
+                return BadRequest("The selected room is not available.");
+            }
+
+            var bookedDates = room.AvailableDates
+                .Where(ad => ad.Date >= booking.CheckInDate && ad.Date <= booking.CheckOutDate)
+                .ToList();
+
+            if (bookedDates.Count > 0)
+            {
+                foreach (var bookedDate in bookedDates)
+                {
+                    room.AvailableDates.Remove(bookedDate);
+                }
+            }
+            else
+            {
+                return BadRequest("The room is already booked for some of the selected dates.");
+            }
+
+            booking.TotalPrice = (int)(booking.CheckOutDate - booking.CheckInDate).TotalDays * room.PricePerNight;
+
+            await _bookingRepository.AddAsync(booking);
+
+            return Ok($"Booking created successfully. Booking Id {booking.Id}");
         }
     }
 }

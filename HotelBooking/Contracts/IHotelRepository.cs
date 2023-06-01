@@ -1,4 +1,5 @@
 ﻿using HotelBooking.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelBooking.Contracts
 {

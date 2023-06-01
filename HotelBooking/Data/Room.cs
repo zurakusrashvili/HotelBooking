@@ -10,14 +10,15 @@ namespace HotelBooking.Data
         [ForeignKey(nameof(HotelId))]
         public int HotelId { get; set; }
 
-        public decimal PricePerNight { get; set; }
+        public int PricePerNight { get; set; }
 
         public bool Available { get; set; }
 
         public int MaximumGuests { get; set; }
-        public List<DateTime> AvailableDates { get; set; }
 
-        public virtual IList<string> Images { get; set; }
+        public virtual IList<AvailableDate> AvailableDates { get; set; }
+
+        public virtual IList<Image> Images { get; set; }
 
     }
 }

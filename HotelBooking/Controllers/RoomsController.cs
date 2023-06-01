@@ -28,7 +28,7 @@ namespace HotelBooking.Controllers
         // GET: api/Rooms
         [HttpGet]
         [Route("GetAll")]
-        public async Task<ActionResult<IEnumerable<RoomDto>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<RoomDto>>> GetAllRooms()
         {
             var rooms = await _roomsRepository.GetAllAsync();
             return Ok(_mapper.Map<List<RoomDto>>(rooms));
@@ -46,6 +46,22 @@ namespace HotelBooking.Controllers
             }
 
             var roomDto = _mapper.Map<RoomDto>(room);
+            return Ok(roomDto);
+        }
+
+        [HttpGet]
+        [Route("GetAvailableRooms")]
+        public async Task<ActionResult<IList<RoomDto>>> GetAvailableRooms([FromQuery] DateTime from, [FromQuery] DateTime to)
+        {
+
+            var rooms = await _roomsRepository.GetAvailableRooms(from,to);
+
+            if (rooms == null)
+            {
+                return NotFound();
+            }
+
+            var roomDto = _mapper.Map<List<RoomDto>>(rooms);
             return Ok(roomDto);
         }
 
