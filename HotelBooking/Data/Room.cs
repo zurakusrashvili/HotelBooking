@@ -16,7 +16,7 @@ namespace HotelBooking.Data
 
         public int MaximumGuests { get; set; }
 
-        public virtual IList<AvailableDate> AvailableDates { get; set; }
+        public virtual IList<BookedDate> BookedDates { get; set; }
 
         public virtual IList<Image> Images { get; set; }
 

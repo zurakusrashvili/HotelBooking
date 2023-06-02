@@ -8,31 +8,7 @@ namespace HotelBooking.Data
     public class HotelBookingDbContext : DbContext
     {
 
-        private List<AvailableDate> GenerateMockAvailableDates(int roomId, DateTime startDate, DateTime endDate)
-        {
-            List<AvailableDate> availableDates = new List<AvailableDate>();
-            int count = 1;
-            for (int i = 1; i <= roomId; i++)
-            {
-
-                DateTime currentDate = startDate;
-                while (currentDate <= endDate)
-                {
-                    AvailableDate availableDate = new AvailableDate
-                    {
-                        Id = count++,
-                        Date = currentDate,
-                        RoomId = i
-                    };
-
-                    availableDates.Add(availableDate);
-                    currentDate = currentDate.AddDays(1);
-                }
-            }
-
-            return availableDates;
-        }
-
+      
 
         public HotelBookingDbContext(DbContextOptions options) : base(options)
         {
@@ -42,7 +18,7 @@ namespace HotelBooking.Data
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Image> Images { get; set; }
-        public DbSet<AvailableDate> AvailableDates { get; set; }
+        public DbSet<BookedDate> BookedDates { get; set; }
 
         public DbSet<Booking> Bookings { get; set; }
 
@@ -79,11 +55,6 @@ namespace HotelBooking.Data
                 }
 
             );
-            DateTime startDate = DateTime.Now;
-            DateTime endDate = startDate.AddYears(2);
-
-            var availableDates = GenerateMockAvailableDates(20, startDate, endDate);
-            modelBuilder.Entity<AvailableDate>().HasData( availableDates );
 
             modelBuilder.Entity<Room>().HasData(
                 new Room()

@@ -17,37 +17,50 @@ namespace HotelBooking.Repository
         public async Task<List<Room>> GetAllRooms()
         {
             return await _context.Rooms
-                .ToListAsync();
+                    .Include(r => r.BookedDates)
+                    .Include(r => r.Images)
+                    .ToListAsync();
         }
+
+        //public async Task<Room> GetRoomById(int id)
+        //{
+        //    return await _context.Rooms
+        //        .Include(r => r.Images)
+        //        .Where(r => r.Id == id)
+        //        .Include(r => r.AvailableDates.Take(60))
+        //        .Where(r => r.Id == id)
+        //        .FirstAsync();
+        //}
 
         public async Task<Room> GetRoomById(int id)
         {
+            var currentDate = DateTime.Now;
+            var futureDate = currentDate.AddDays(60);
+
             return await _context.Rooms
                 .Include(r => r.Images)
                 .Where(r => r.Id == id)
-                .Include(r => r.AvailableDates.Take(60))
-                .Where(r => r.Id == id)
-                .FirstAsync();
+                .Include(r => r.BookedDates)
+                .FirstOrDefaultAsync(r => r.Id == id);
         }
 
-        public async Task<IList<Room>> GetAvailableRooms(DateTime fromDate, DateTime toDate)
-        {
-            //var rooms = await _context.Rooms.ToListAsync();
+        //public async Task<IList<Room>> GetAvailableRooms()
+        //{
+        //    //var rooms = await _context.Rooms.ToListAsync();
 
-            //foreach (var room in rooms)
-            //{
-            //    await _context.Entry(room)
-            //        .Collection(r => r.Images)
-            //        .LoadAsync();
-            //}
-            //return rooms;
+        //    //foreach (var room in rooms)
+        //    //{
+        //    //    await _context.Entry(room)
+        //    //        .Collection(r => r.Images)
+        //    //        .LoadAsync();
+        //    //}
+        //    //return rooms;
 
-            return await _context.Rooms
-                    .Include(r => r.AvailableDates)
-                    .Where(r => r.Available && r.AvailableDates.Any(ad => ad.Date >= fromDate && ad.Date <= toDate))
-                    .ToListAsync();
+        //    return await _context.Rooms
+        //            .Include(r => r.BookedDates)
+        //            .ToListAsync();
 
-        }
+        //}
 
         //public async Task<Category> GetDetails(int id)
         //{

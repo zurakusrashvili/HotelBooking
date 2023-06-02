@@ -28,6 +28,7 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped<IHotelRepository, HotelRepository>();
 builder.Services.AddScoped<IRoomsRepository, RoomRepository>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IDatesRepository, DatesRepository>();
 
 var app = builder.Build();
 
@@ -45,6 +46,7 @@ app.UseSwaggerUI(c =>
 {
     string swaggerJsonBasPath = string.IsNullOrWhiteSpace(c.RoutePrefix) ? "." : "..";
     c.SwaggerEndpoint($"{swaggerJsonBasPath}/swagger/v1/swagger.json", "Hotel Booking API");
+    c.RoutePrefix = String.Empty; //Remove during Production
     c.DefaultModelsExpandDepth(-1);
 });
 

@@ -48,20 +48,22 @@ namespace HotelBooking.Controllers
             var roomDto = _mapper.Map<RoomDto>(room);
             return Ok(roomDto);
         }
-
         [HttpGet]
         [Route("GetAvailableRooms")]
-        public async Task<ActionResult<IList<RoomDto>>> GetAvailableRooms([FromQuery] DateTime from, [FromQuery] DateTime to)
+        public async Task<ActionResult<IList<RoomDto>>> GetAvailableStatus([FromQuery] DateTime from, [FromQuery] DateTime to)
         {
-
-            var rooms = await _roomsRepository.GetAvailableRooms(from,to);
+            var rooms = await _roomsRepository.GetAllRooms();
 
             if (rooms == null)
             {
                 return NotFound();
             }
 
-            var roomDto = _mapper.Map<List<RoomDto>>(rooms);
+            var availableRooms = rooms.Where(room =>
+                !room.BookedDates.Any(ad => ad.Date >= from && ad.Date <= to)
+            ).ToList();
+
+            var roomDto = _mapper.Map<List<RoomDto>>(availableRooms);
             return Ok(roomDto);
         }
 

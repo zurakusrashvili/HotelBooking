@@ -2,7 +2,7 @@
 
 namespace HotelBooking.Data
 {
-    public class AvailableDate
+    public class BookedDate
     {
         public int Id { get; set; }
 

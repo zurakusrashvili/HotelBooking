@@ -10,7 +10,7 @@ namespace HotelBooking.Models.Rooms
         public decimal PricePerNight { get; set; }
         public bool Available { get; set; }
         public int MaximumGuests { get; set; }
-        public virtual IList<AvailableDate> AvailableDates { get; set; }
+        public virtual IList<BookedDate> BookedDates { get; set; }
         public virtual IList<Image> Images { get; set; }
     }
 }
