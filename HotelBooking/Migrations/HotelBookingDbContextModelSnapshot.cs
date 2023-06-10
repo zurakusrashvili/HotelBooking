@@ -843,6 +843,9 @@ namespace HotelBooking.Migrations
                     b.Property<int>("PricePerNight")
                         .HasColumnType("int");
 
+                    b.Property<int>("RoomTypeId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("HotelId");
@@ -857,7 +860,8 @@ namespace HotelBooking.Migrations
                             HotelId = 1,
                             MaximumGuests = 3,
                             Name = "Premium Room",
-                            PricePerNight = 10
+                            PricePerNight = 199,
+                            RoomTypeId = 1
                         },
                         new
                         {
@@ -866,7 +870,8 @@ namespace HotelBooking.Migrations
                             HotelId = 1,
                             MaximumGuests = 3,
                             Name = "Deluxe Twin Room",
-                            PricePerNight = 100
+                            PricePerNight = 299,
+                            RoomTypeId = 2
                         },
                         new
                         {
@@ -875,16 +880,18 @@ namespace HotelBooking.Migrations
                             HotelId = 1,
                             MaximumGuests = 2,
                             Name = "Club Room",
-                            PricePerNight = 100
+                            PricePerNight = 89,
+                            RoomTypeId = 1
                         },
                         new
                         {
                             Id = 4,
                             Available = true,
                             HotelId = 1,
-                            MaximumGuests = 3,
+                            MaximumGuests = 5,
                             Name = "Deluxe Double Room",
-                            PricePerNight = 10
+                            PricePerNight = 189,
+                            RoomTypeId = 2
                         },
                         new
                         {
@@ -893,7 +900,8 @@ namespace HotelBooking.Migrations
                             HotelId = 1,
                             MaximumGuests = 3,
                             Name = "Junior Suite",
-                            PricePerNight = 10
+                            PricePerNight = 99,
+                            RoomTypeId = 1
                         },
                         new
                         {
@@ -902,16 +910,18 @@ namespace HotelBooking.Migrations
                             HotelId = 1,
                             MaximumGuests = 2,
                             Name = "Club Twin Room",
-                            PricePerNight = 10
+                            PricePerNight = 199,
+                            RoomTypeId = 2
                         },
                         new
                         {
                             Id = 7,
                             Available = true,
                             HotelId = 1,
-                            MaximumGuests = 3,
+                            MaximumGuests = 6,
                             Name = "Grand Deluxe Suite",
-                            PricePerNight = 10
+                            PricePerNight = 299,
+                            RoomTypeId = 3
                         },
                         new
                         {
@@ -920,16 +930,18 @@ namespace HotelBooking.Migrations
                             HotelId = 1,
                             MaximumGuests = 5,
                             Name = "Executive Suite",
-                            PricePerNight = 10
+                            PricePerNight = 299,
+                            RoomTypeId = 1
                         },
                         new
                         {
                             Id = 9,
                             Available = true,
                             HotelId = 2,
-                            MaximumGuests = 3,
+                            MaximumGuests = 5,
                             Name = "Superior Twin Room",
-                            PricePerNight = 10
+                            PricePerNight = 199,
+                            RoomTypeId = 2
                         },
                         new
                         {
@@ -938,16 +950,18 @@ namespace HotelBooking.Migrations
                             HotelId = 2,
                             MaximumGuests = 3,
                             Name = "Junior Suite",
-                            PricePerNight = 10
+                            PricePerNight = 99,
+                            RoomTypeId = 2
                         },
                         new
                         {
                             Id = 11,
                             Available = true,
                             HotelId = 2,
-                            MaximumGuests = 3,
+                            MaximumGuests = 5,
                             Name = "Superior Room",
-                            PricePerNight = 10
+                            PricePerNight = 399,
+                            RoomTypeId = 3
                         },
                         new
                         {
@@ -956,16 +970,18 @@ namespace HotelBooking.Migrations
                             HotelId = 2,
                             MaximumGuests = 3,
                             Name = "Executive Room",
-                            PricePerNight = 10
+                            PricePerNight = 99,
+                            RoomTypeId = 2
                         },
                         new
                         {
                             Id = 13,
                             Available = true,
                             HotelId = 2,
-                            MaximumGuests = 3,
+                            MaximumGuests = 4,
                             Name = "Deluxe Twin Room",
-                            PricePerNight = 10
+                            PricePerNight = 199,
+                            RoomTypeId = 2
                         },
                         new
                         {
@@ -974,25 +990,28 @@ namespace HotelBooking.Migrations
                             HotelId = 2,
                             MaximumGuests = 3,
                             Name = "Deluxe Room",
-                            PricePerNight = 10
+                            PricePerNight = 149,
+                            RoomTypeId = 1
                         },
                         new
                         {
                             Id = 15,
                             Available = true,
                             HotelId = 3,
-                            MaximumGuests = 3,
+                            MaximumGuests = 4,
                             Name = "Premium Room",
-                            PricePerNight = 10
+                            PricePerNight = 149,
+                            RoomTypeId = 2
                         },
                         new
                         {
                             Id = 16,
                             Available = true,
                             HotelId = 3,
-                            MaximumGuests = 3,
+                            MaximumGuests = 6,
                             Name = "Superior Room",
-                            PricePerNight = 10
+                            PricePerNight = 299,
+                            RoomTypeId = 3
                         },
                         new
                         {
@@ -1001,16 +1020,18 @@ namespace HotelBooking.Migrations
                             HotelId = 3,
                             MaximumGuests = 3,
                             Name = "Superior Room, City View (High Floor)",
-                            PricePerNight = 10
+                            PricePerNight = 399,
+                            RoomTypeId = 3
                         },
                         new
                         {
                             Id = 18,
                             Available = true,
                             HotelId = 3,
-                            MaximumGuests = 3,
+                            MaximumGuests = 2,
                             Name = "Standard Room",
-                            PricePerNight = 10
+                            PricePerNight = 99,
+                            RoomTypeId = 1
                         },
                         new
                         {
@@ -1019,7 +1040,8 @@ namespace HotelBooking.Migrations
                             HotelId = 3,
                             MaximumGuests = 4,
                             Name = "Junior Suite",
-                            PricePerNight = 10
+                            PricePerNight = 199,
+                            RoomTypeId = 2
                         },
                         new
                         {
@@ -1028,7 +1050,41 @@ namespace HotelBooking.Migrations
                             HotelId = 3,
                             MaximumGuests = 2,
                             Name = "Premium Room",
-                            PricePerNight = 10
+                            PricePerNight = 149,
+                            RoomTypeId = 3
+                        });
+                });
+
+            modelBuilder.Entity("HotelBooking.Data.RoomType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoomTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Single Room"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Double Room"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Deluxe Room"
                         });
                 });
 

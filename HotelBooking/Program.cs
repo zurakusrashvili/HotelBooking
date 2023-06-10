@@ -22,6 +22,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowAll", o => o.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 });
+
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -46,7 +47,7 @@ app.UseSwaggerUI(c =>
 {
     string swaggerJsonBasPath = string.IsNullOrWhiteSpace(c.RoutePrefix) ? "." : "..";
     c.SwaggerEndpoint($"{swaggerJsonBasPath}/swagger/v1/swagger.json", "Hotel Booking API");
-    c.RoutePrefix = String.Empty; //Remove during Production
+    //c.RoutePrefix = String.Empty;
     c.DefaultModelsExpandDepth(-1);
 });
 
@@ -58,11 +59,12 @@ app.UseStaticFiles();
 app.UseCors("AllowAll");
 
 app.UseRouting();
-
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();

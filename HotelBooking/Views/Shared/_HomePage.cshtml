@@ -1,0 +1,224 @@
+﻿    <!-- Revolution Slider -->
+<section class="revolution-slider">
+    <div class="bannercontainer">
+        <div class="banner">
+            <ul>
+                <!-- Slide 1 -->
+                <li data-transition="fade" data-slotamount="7" data-masterspeed="1500">
+                    <!-- Main Image -->
+                    <img src="../../images/slides/slide-bg.jpg" style="opacity:0;" alt="slidebg1" data-bgfit="cover" data-bgposition="left bottom" data-bgrepeat="no-repeat">
+                    <!-- Layers -->
+                    <!-- Layer 1 -->
+                    <div class="caption sft revolution-starhotel bigtext"
+                         data-x="505"
+                         data-y="30"
+                         data-speed="700"
+                         data-start="1700"
+                         data-easing="easeOutBack">
+                        <span><i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i></span> Five Star Hotels <span><i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i></span>
+                    </div>
+                    <!-- Layer 2 -->
+                    <div class="caption sft revolution-starhotel smalltext"
+                         data-x="605"
+                         data-y="105"
+                         data-speed="800"
+                         data-start="1700"
+                         data-easing="easeOutBack">
+                        <span>And we like to keep it that way!</span>
+                    </div>
+                    <!-- Layer 3 -->
+                    <div class="caption sft"
+                         data-x="775"
+                         data-y="175"
+                         data-speed="1000"
+                         data-start="1900"
+                         data-easing="easeOutBack">
+                        <a ng-click="changeActiveTab(webPages.Hotels)" class="button btn btn-purple btn-lg">See hotels</a>
+                    </div>
+                </li>
+                <!-- Slide 2 -->
+             @*   <li data-transition="boxfade" data-slotamount="7" data-masterspeed="1000">
+                    <!-- Main Image -->
+                    <img src="../../images/slides/slide-bg-02.jpg" alt="darkblurbg" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                    <!-- Layers -->
+                    <!-- Layer 1 -->
+                    <div class="caption sft revolution-starhotel bigtext"
+                         data-x="585"
+                         data-y="30"
+                         data-speed="700"
+                         data-start="1700"
+                         data-easing="easeOutBack">
+                        <span><i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i></span> Double room <span><i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i></span>
+                    </div>
+                    <!-- Layer 2 -->
+                    <div class="caption sft revolution-starhotel smalltext"
+                         data-x="682"
+                         data-y="105"
+                         data-speed="800"
+                         data-start="1700"
+                         data-easing="easeOutBack">
+                        <span>€ 99,- a night this summer</span>
+                    </div>
+                    <!-- Layer 3 -->
+                    <div class="caption sft"
+                         data-x="785"
+                         data-y="175"
+                         data-speed="1000"
+                         data-start="1900"
+                         data-easing="easeOutBack">
+                        <a ng-click="changeActiveTab(webPages.Details)" class="button btn btn-purple btn-lg">Book this room</a>
+                    </div>
+                </li>*@
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Reservation form -->
+@*<section id="reservation-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-inline reservation-horizontal clearfix" name="reservationForm" ng-submit="getFilteredRooms()" id="reservationform">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="email" accesskey="E">E-mail</label>
+                                <input name="email" type="text" id="email" value="" class="form-control" placeholder="Please enter your E-mail" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="room">Room Type</label>
+                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                <select class="form-control" name="room" id="room">
+                                    <option selected="selected" disabled="disabled">Select a room</option>
+                                    <option value="Single">Single room</option>
+                                    <option value="Double">Double Room</option>
+                                    <option value="Deluxe">Deluxe room</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="checkin">Check-in</label>
+                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Check-In is from 11:00"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                <i class="fa fa-calendar infield"></i>
+                                <input name="checkin" type="text" id="checkin" value="" class="form-control checkIn" placeholder="Check-in" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="checkout">Check-out</label>
+                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Check-out is from 12:00"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                <i class="fa fa-calendar infield"></i>
+                                <input name="checkout" type="text" id="checkout" value="" class="form-control checkOut" placeholder="Check-out" />
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <div class="guests-select">
+                                    <label>Guests</label>
+                                    <i class="fa fa-user infield"></i>
+                                    <div class="total form-control" id="test">1</div>
+                                    <div class="guests">
+                                        <div class="form-group adults">
+                                            <label for="adults">Adults</label>
+                                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="+18 years"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                            <select name="adults" id="adults" class="form-control">
+                                                <option value="1">1 adult</option>
+                                                <option value="2">2 adults</option>
+                                                <option value="3">3 adults</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group children">
+                                            <label for="children">Children</label>
+                                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="0 till 18 years"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                            <select name="children" id="children" class="form-control">
+                                                <option value="0">0 children</option>
+                                                <option value="1">1 child</option>
+                                                <option value="2">2 children</option>
+                                                <option value="3">3 children</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-default button-save btn-block">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary btn-block">Book Now</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>*@
+
+<!-- Rooms -->
+<section class="rooms mt100">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="lined-heading"><span>Guests Favorite Rooms</span></h2>
+            </div>
+            <div class="col-sm-4 mt50" ng-repeat="room in Rooms | limitTo: 6" style="cursor: pointer;">
+                <div class="room-thumb">
+                    <img ng-src="{{room.images[2].source}}" alt="room 1" class="img-responsive" />
+                    <div class="mask">
+                        <div class="main">
+                            <h5>{{room.name}}</h5>
+                            <div class="price">&euro; {{room.pricePerNight}}<span>a night</span></div>
+                        </div>
+                        <button ng-click="changeActiveTab(webPages.Details); selectRoom(room)" class="btn btn-primary btn-block">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- USP's -->
+<section class="usp mt100">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="lined-heading"><span>USP section</span></h2>
+            </div>
+            <div class="col-sm-3 bounceIn appear" data-start="0">
+                <div class="box-icon">
+                    <div class="circle"><i class="fa fa-glass fa-lg"></i></div>
+                    <h3>Beverages included</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum. </p>
+                    <a href="#">Read more<i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-sm-3 bounceIn appear" data-start="400">
+                <div class="box-icon">
+                    <div class="circle"><i class="fa fa-credit-card fa-lg"></i></div>
+                    <h3>Stay First, Pay After!</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum. </p>
+                    <a href="#">Read more<i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-sm-3 bounceIn appear" data-start="800">
+                <div class="box-icon">
+                    <div class="circle"><i class="fa fa-cutlery fa-lg"></i></div>
+                    <h3>24 Hour Restaurant</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum. </p>
+                    <a href="#">Read more<i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-sm-3 bounceIn appear" data-start="1200">
+                <div class="box-icon">
+                    <div class="circle"><i class="fa fa-tint fa-lg"></i></div>
+                    <h3>Spa Included!</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum. </p>
+                    <a href="#">Read more<i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

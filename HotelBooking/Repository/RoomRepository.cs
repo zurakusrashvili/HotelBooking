@@ -2,6 +2,7 @@
 using HotelBooking.Contracts;
 using HotelBooking.Data;
 using Microsoft.AspNetCore.Mvc;
+using HotelBooking.Models.Filters;
 
 namespace HotelBooking.Repository
 {
@@ -20,6 +21,12 @@ namespace HotelBooking.Repository
                     .Include(r => r.BookedDates)
                     .Include(r => r.Images)
                     .ToListAsync();
+        }
+
+        public async Task<List<RoomType>> GetRoomTypes()
+        {
+            return await _context.RoomTypes
+                .ToListAsync();
         }
 
         //public async Task<Room> GetRoomById(int id)
@@ -42,6 +49,35 @@ namespace HotelBooking.Repository
                 .Where(r => r.Id == id)
                 .Include(r => r.BookedDates)
                 .FirstOrDefaultAsync(r => r.Id == id);
+        }
+
+        public async Task<List<Room>> GetFiltered(RoomFilter filter = null)
+        {
+            var query = _context.Rooms
+                .Include(r => r.Images)
+                .Include(r => r.BookedDates)
+                .AsQueryable();
+
+            if (filter?.RoomTypeId != null)
+                query = query.Where(r => r.RoomTypeId == filter.RoomTypeId);
+
+            if (filter?.PriceFrom != null)
+                query = query.Where(r => r.PricePerNight >= filter.PriceFrom);
+
+            if (filter?.PriceTo != null)
+                query = query.Where(r => r.PricePerNight <= filter.PriceTo);
+
+            if (filter?.MaximumGuests != null)
+                query = query.Where(r => r.MaximumGuests >= filter.MaximumGuests);
+
+            if(filter?.CheckIn != null && filter?.CheckOut != null)
+            {
+                query = query.Where(room =>
+                    !room.BookedDates.Any(ad => ad.Date >= filter.CheckIn && ad.Date <= filter.CheckOut)
+                );
+            }
+
+            return query.ToList();
         }
 
         //public async Task<IList<Room>> GetAvailableRooms()

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using HotelBooking.Contracts;
 using HotelBooking.Models.Rooms;
 using HotelBooking.Data;
+using HotelBooking.Models.Filters;
 
 namespace HotelBooking.Controllers
 {
@@ -30,7 +31,7 @@ namespace HotelBooking.Controllers
         [Route("GetAll")]
         public async Task<ActionResult<IEnumerable<RoomDto>>> GetAllRooms()
         {
-            var rooms = await _roomsRepository.GetAllAsync();
+            var rooms = await _roomsRepository.GetAllRooms();
             return Ok(_mapper.Map<List<RoomDto>>(rooms));
         }
 
@@ -67,16 +68,34 @@ namespace HotelBooking.Controllers
             return Ok(roomDto);
         }
 
+        [HttpGet]
+        [Route("GetRoomTypes")]
+        public async Task<ActionResult<IList<RoomType>>> GetRoomTypes()
+        {
+            var roomtypes = await _roomsRepository.GetRoomTypes();
+
+            if (roomtypes == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(roomtypes);
+        }
 
 
 
-        //[HttpGet]
-        //[Route("GetFiltered")]
-        //public async Task<ActionResult<IEnumerable<ProductDto>>> GetFilteredProducts([FromQuery]bool? vegeterian, [FromQuery]bool? nuts, [FromQuery]int? spiciness, [FromQuery] int? categoryId)
-        //{
-        //    var products = await _roomsRepository.GetFiltered(vegeterian, nuts, spiciness, categoryId);
 
-        //    return Ok(_mapper.Map<List<ProductDto>>(products));
-        //}
+
+        [HttpPost]
+        [Route("GetFiltered")]
+        public async Task<ActionResult<IEnumerable<RoomDto>>> GetFilteredProducts([FromBody]RoomFilter filter = null)
+        {
+            var rooms = await _roomsRepository.GetFiltered(filter);
+
+            return Ok(_mapper.Map<List<RoomDto>>(rooms));
+        }
     }
+
+
+
 }

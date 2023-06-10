@@ -18,12 +18,12 @@ namespace HotelBooking.Controllers
             return View();
         }
 
-        public IActionResult Menu()
+        public IActionResult RoomDetails()
         {
             return View();
         }
 
-        public IActionResult Cart()
+        public IActionResult RoomList()
         {
             return View();
         }

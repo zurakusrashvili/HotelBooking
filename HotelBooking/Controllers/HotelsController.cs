@@ -51,5 +51,26 @@ namespace HotelBooking.Controllers
             var hotelDto = _mapper.Map<HotelDto>(hotel);
             return Ok(hotelDto);
         }
+
+        [HttpGet]
+        [Route("GetHotels")]
+        public async Task<ActionResult<IEnumerable<HotelDto>>> GetHotelsByCity(string city)
+        {
+            var filteredHotels = await _hotelsRepository.GetHotelByCity(city);
+
+            var hotelDto = _mapper.Map<List<HotelDto>>(filteredHotels);
+
+            return Ok(hotelDto);
+        }
+        [HttpGet]
+        [Route("GetCities")]
+        public async Task<ActionResult<IEnumerable<HotelDto>>> GetCities()
+        {
+            var AllCities = await _hotelsRepository.GetCities();
+
+            return Ok(AllCities);
+        }
+
+
     }
 }

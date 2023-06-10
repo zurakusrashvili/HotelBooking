@@ -19,6 +19,7 @@ namespace HotelBooking.Data
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<BookedDate> BookedDates { get; set; }
+        public DbSet<RoomType> RoomTypes { get; set; }
 
         public DbSet<Booking> Bookings { get; set; }
 
@@ -61,10 +62,11 @@ namespace HotelBooking.Data
                 {
                     Id = 1,
                     Name = "Premium Room",
-                    PricePerNight = 10,
+                    PricePerNight = 199,
                     HotelId = 1,
                     Available = true,
-                    MaximumGuests = 3
+                    MaximumGuests = 3,
+                    RoomTypeId = 1,
 
                 },
 
@@ -72,70 +74,77 @@ namespace HotelBooking.Data
                  {
                      Id = 2,
                      Name = "Deluxe Twin Room",
-                     PricePerNight = 100,
+                     PricePerNight = 299,
                      HotelId = 1,
                      Available = true,
-                     MaximumGuests = 3
+                     MaximumGuests = 3,
+                    RoomTypeId = 2,
                  },
 
                   new Room()
                   {
                       Id = 3,
                       Name = "Club Room",
-                      PricePerNight = 100,
+                      PricePerNight = 89,
                       HotelId = 1,
                       Available = true,
-                      MaximumGuests = 2
+                      MaximumGuests = 2,
+                    RoomTypeId = 1,
                   },
 
                    new Room()
                    {
                        Id = 4,
                        Name = "Deluxe Double Room",
-                       PricePerNight = 10,
+                       PricePerNight = 189,
                        HotelId = 1,
                        Available = true,
-                       MaximumGuests = 3
+                       MaximumGuests = 5,
+                    RoomTypeId = 2,
                    },
 
                     new Room()
                     {
                         Id = 5,
                         Name = "Junior Suite",
-                        PricePerNight = 10,
+                        PricePerNight = 99,
                         HotelId = 1,
                         Available = true,
-                        MaximumGuests = 3
+                        MaximumGuests = 3, 
+                        RoomTypeId = 1
                     },
 
                      new Room()
                      {
                          Id = 6,
                          Name = "Club Twin Room",
-                         PricePerNight = 10,
+                         PricePerNight = 199,
                          HotelId = 1,
                          Available = true,
-                         MaximumGuests = 2
+                         MaximumGuests = 2,
+                         RoomTypeId = 2,
                      },
 
                       new Room()
                       {
                           Id = 7,
                           Name = "Grand Deluxe Suite",
-                          PricePerNight = 10,
+                          PricePerNight = 299,
                           HotelId = 1,
                           Available = true,
-                          MaximumGuests = 3
+                          MaximumGuests = 6,
+                            RoomTypeId = 3,
                       },
 
                        new Room()
                        {
                            Id = 8,
                            Name = "Executive Suite",
-                           PricePerNight = 10,
+                           PricePerNight = 299,
                            HotelId = 1,
                            Available = true,
-                           MaximumGuests = 5
+                           MaximumGuests = 5,
+                    RoomTypeId = 1,
                        },
 
                        //2
@@ -143,60 +152,66 @@ namespace HotelBooking.Data
                        {
                            Id = 9,
                            Name = "Superior Twin Room",
-                           PricePerNight = 10,
+                           PricePerNight = 199,
                            HotelId = 2,
                            Available = true,
-                           MaximumGuests = 3
+                           MaximumGuests = 5,
+                    RoomTypeId = 2,
                        },
 
                        new Room()
                        {
                            Id = 10,
                            Name = "Junior Suite",
-                           PricePerNight = 10,
+                           PricePerNight = 99,
                            HotelId = 2,
                            Available = true,
-                           MaximumGuests = 3
+                           MaximumGuests = 3,
+                    RoomTypeId = 2,
                        },
 
                        new Room()
                        {
                            Id = 11,
                            Name = "Superior Room",
-                           PricePerNight = 10,
+                           PricePerNight = 399,
                            HotelId = 2,
                            Available = true,
-                           MaximumGuests = 3
+                           MaximumGuests = 5,
+                    RoomTypeId = 3,
                        },
 
                        new Room()
                        {
                            Id = 12,
                            Name = "Executive Room",
-                           PricePerNight = 10,
+                           PricePerNight = 99,
                            HotelId = 2,
                            Available = true,
-                           MaximumGuests = 3
+                           MaximumGuests = 3,
+                    RoomTypeId = 2
                        },
 
                        new Room()
                        {
                            Id = 13,
                            Name = "Deluxe Twin Room",
-                           PricePerNight = 10,
+                           PricePerNight = 199,
                            HotelId = 2,
                            Available = true,
-                           MaximumGuests = 3
+                           MaximumGuests = 4,
+                    RoomTypeId = 2,
                        },
 
                        new Room()
                        {
                            Id = 14,
                            Name = "Deluxe Room",
-                           PricePerNight = 10,
+                           PricePerNight = 149,
                            HotelId = 2,
                            Available = true,
-                           MaximumGuests = 3
+                           MaximumGuests = 3,
+                    RoomTypeId = 1,
                        },
 
 
@@ -205,59 +220,84 @@ namespace HotelBooking.Data
                         {
                             Id = 15,
                             Name = "Premium Room",
-                            PricePerNight = 10,
+                            PricePerNight = 149,
                             HotelId = 3,
                             Available = true,
-                            MaximumGuests = 3
+                            MaximumGuests = 4,
+                    RoomTypeId = 2,
                         },
                         new Room()
                         {
                             Id = 16,
                             Name = "Superior Room",
-                            PricePerNight = 10,
+                            PricePerNight = 299,
                             HotelId = 3,
                             Available = true,
-                            MaximumGuests = 3
+                            MaximumGuests = 6,
+                    RoomTypeId = 3,
                         },
                         new Room()
                         {
                             Id = 17,
                             Name = "Superior Room, City View (High Floor)",
-                            PricePerNight = 10,
+                            PricePerNight = 399,
                             HotelId = 3,
                             Available = true,
-                            MaximumGuests = 3
+                            MaximumGuests = 3,
+                    RoomTypeId = 3,
                         },
                         new Room()
                         {
                             Id = 18,
                             Name = "Standard Room",
-                            PricePerNight = 10,
+                            PricePerNight = 99,
                             HotelId = 3,
                             Available = true,
-                            MaximumGuests = 3
+                            MaximumGuests = 2,
+                    RoomTypeId = 1,
                         },
                         new Room()
                         {
                             Id = 19,
                             Name = "Junior Suite",
-                            PricePerNight = 10,
+                            PricePerNight = 199,
                             HotelId = 3,
                             Available = true,
-                            MaximumGuests = 4
+                            MaximumGuests = 4,
+                    RoomTypeId = 2,
                         },
                         new Room()
                         {
                             Id = 20,
                             Name = "Premium Room",
-                            PricePerNight = 10,
+                            PricePerNight = 149,
                             HotelId = 3,
                             Available = true,
-                            MaximumGuests = 2
-
+                            MaximumGuests = 2,
+                            RoomTypeId = 3,
                         }
 
         );
+
+            modelBuilder.Entity<RoomType>().HasData(
+                new RoomType()
+                {
+                    Id = 1,
+                    Name = "Single Room"
+                },
+
+                 new RoomType()
+                 {
+                     Id = 2,
+                     Name = "Double Room"
+                 },
+
+                  new RoomType()
+                  {
+                      Id = 3,
+                      Name = "Deluxe Room"
+                  }
+                );
 
             modelBuilder.Entity<Image>().HasData(
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HotelBooking.Data
 {
@@ -9,6 +10,9 @@ namespace HotelBooking.Data
 
         [ForeignKey(nameof(HotelId))]
         public int HotelId { get; set; }
+
+        [ForeignKey(nameof(RoomTypeId))]
+        public int RoomTypeId { get; set; }
 
         public int PricePerNight { get; set; }
 

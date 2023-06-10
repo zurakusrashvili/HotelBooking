@@ -8,7 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap.min.css" />
+    <Compile Remove="Models\Booking\**" />
+    <Compile Remove="Models\RoomType\**" />
+    <Content Remove="Models\Booking\**" />
+    <Content Remove="Models\RoomType\**" />
+    <EmbeddedResource Remove="Models\Booking\**" />
+    <EmbeddedResource Remove="Models\RoomType\**" />
+    <None Remove="Models\Booking\**" />
+    <None Remove="Models\RoomType\**" />
+    <TypeScriptCompile Remove="Models\Booking\**" />
+    <TypeScriptCompile Remove="Models\RoomType\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -85,12 +94,10 @@
 	  <TypeScriptCompile Include="wwwroot\js\angularjs\angular.d.ts" />
 	  <TypeScriptCompile Include="wwwroot\js\Entities.ts" />
 	  <TypeScriptCompile Include="wwwroot\js\file.ts" />
-	  <TypeScriptCompile Include="wwwroot\js\jquery\jquery.d.ts" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Models\Booking\" />
-	  <Folder Include="Models\RoomType\" />
+	  <Folder Include="wwwroot\js\rs-plugin\js\" />
 	</ItemGroup>
 
 </Project>

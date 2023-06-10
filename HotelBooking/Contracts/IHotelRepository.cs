@@ -7,6 +7,8 @@ namespace HotelBooking.Contracts
     {
         Task<List<Hotel>> GetAllHotels();
         Task<Hotel> GetHotelById(int id);
+        Task<List<Hotel>> GetHotelByCity(string city);
+        Task<List<string>> GetCities();
 
     }
 }

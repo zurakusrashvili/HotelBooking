@@ -69,6 +69,8 @@ namespace HotelBooking.Controllers
 
             await _roomRepository.UpdateAsync(room); // Update the room with the added booked dates
 
+            booking.TotalPrice = (int)(booking.CheckOutDate - booking.CheckInDate).TotalDays * room.PricePerNight;
+
             await _bookingRepository.AddAsync(booking);
 
 

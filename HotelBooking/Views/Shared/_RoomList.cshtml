@@ -1,0 +1,219 @@
+﻿<style>
+    .ui-state-default, .ui-widget-content .ui-state-default{
+        background: #f6f6f6 !important;
+    }
+
+    .ui-slider-horizontal .ui-slider-handle {
+        top: 0.2em;
+    }
+
+    .ui-slider-horizontal .ui-slider-range {
+        top: -5px;
+        height: 100%;
+    }
+
+    .PriceRange input{
+        font-size: 13px;
+        font-weight: bold;
+        color: #0a3251;
+        padding: 12px;
+        width: 62px !important;
+        height: 35px !important;
+        border-radius: 4px;
+        background-color: #fff;
+        border: solid 1px #e3e3e3;
+        margin-right: 5px !important;
+    }
+    .PriceRange{
+    display:flex;
+    justify-content: center;
+    }
+    </style>    
+
+<!-- Filter -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="nav nav-pills" id="filters">
+                    <li class="active"><a ng-click="filterByRoomType()">All</a></li>
+                    <li ng-repeat="type in roomTypes">
+                        <a ng-click="filterByRoomType(type.id)">{{type.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+<section id="reservation-form" style="margin-top: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-inline reservation-horizontal clearfix" name="reservationForm" id="filterForm">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group d-flex flex-column">
+                                <label for="price" accesskey="E" style="display: block; text-align: center; margin-top:5px;">Price Per Night</label>
+
+                                <div class="priceSlider" style="margin: 10px 0px !important;">
+                                    <div id="price-range-slider" style="height: 1.5em;"></div>
+                                    <input type="hidden" id="price-from" name="price-from" class="form-control">
+                                    <input type="hidden" id="price-to" name="price-to" class="form-control">
+                                </div>
+                                <div class="PriceRange">
+                                    <input id="price-from-label" class="form-control">
+                                    <input id="price-to-label" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="room">Room Type</label>
+                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                <select class="form-control" name="room" id="room">
+                                    <option selected="selected" disabled="disabled">Select a room</option>
+                                    <option value="{{type.id}}" ng-repeat="type in roomTypes">{{type.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="checkinfilter">Check-in</label>
+                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Check-In is from 11:00"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                <i class="fa fa-calendar infield"></i>
+                                <input name="checkinfilter" type="text" id="checkinfilter" value="" class="form-control checkinfilter" placeholder="Check-in" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="checkoutfilter">Check-out</label>
+                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Check-out is from 12:00"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                <i class="fa fa-calendar infield"></i>
+                                <input name="checkoutfilter" type="text" id="checkoutfilter" value="" class="form-control checkoutfilter" placeholder="Check-out" />
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <div class="guests-select">
+                                    <label>Guests</label>
+                                    <i class="fa fa-user infield"></i>
+                                    <div class="total form-control" id="test">1</div>
+                                    <div class="guests">
+                                        <div class="form-group adults">
+                                            <label for="adults">Adults</label>
+                                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="+18 years"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                            <select name="adults" id="adults" class="form-control">
+                                                <option value="1">1 adult</option>
+                                                <option value="2">2 adults</option>
+                                                <option value="3">3 adults</option>
+                                                <option value="4">4 adults</option>
+                                                <option value="5">5 adults</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-default button-save btn-block">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary btn-block" ng-click="applyRoomsFilter()">Apply Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Rooms -->
+    <section class="rooms mt100">
+        <div class="container">
+            <div class="row room-list fadeIn appear">
+                <!-- Room -->
+            <div class="col-sm-4" ng-repeat="room in filteredRooms" style="cursor: pointer;">
+                    <div class="room-thumb">
+                        <img ng-src="{{room.images[2].source}}" alt="room 1" class="img-responsive" />
+                        <div class="mask">
+                            <div class="main">
+                                <h5>{{room.name}}</h5>
+                                <div class="price">&euro; {{room.pricePerNight}}<span>a night</span></div>
+                            </div>
+                           @* <div class="content">
+                                <p>
+                                    <span>A modern hotel room in Star Hotel</span> Nunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum.
+                                    malesuada metus.
+                                </p>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <ul class="list-unstyled">
+                                            <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
+                                            <li><i class="fa fa-check-circle"></i> Private balcony</li>
+                                            <li><i class="fa fa-check-circle"></i> Sea view</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <ul class="list-unstyled">
+                                            <li><i class="fa fa-check-circle"></i> Free Wi-Fi</li>
+                                            <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
+                                            <li><i class="fa fa-check-circle"></i> Bathroom</li>
+                                        </ul>
+                                    </div>
+                                </div>*@
+                        <button ng-click="changeActiveTab(webPages.Details); selectRoom(room)" class="btn btn-primary btn-block">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+<script>
+    $(function () {
+        var priceFrom = $("#price-from");
+        var priceTo = $("#price-to");
+        var priceFromLabel = $("#price-from-label");
+        var priceToLabel = $("#price-to-label");
+        var today = new Date();
+
+        $("#price-range-slider").slider({
+            range: true,
+            min: 0,
+            max: 1000,
+            values: [0, 1000],
+            slide: function (event, ui) {
+                priceFrom.val(ui.values[0]);
+                priceTo.val(ui.values[1]);
+                priceFromLabel.val(ui.values[0]);
+                priceToLabel.val(ui.values[1]);
+            }
+        });
+
+        priceFrom.val($("#price-range-slider").slider("values", 0));
+        priceTo.val($("#price-range-slider").slider("values", 1));
+        priceFromLabel.val($("#price-range-slider").slider("values", 0));
+        priceToLabel.val($("#price-range-slider").slider("values", 1));
+
+
+
+
+        $("#checkinfilter").datepicker({
+            minDate: today,
+            dateFormat: "yy-mm-dd",
+            onSelect: function (selectedDate) {
+                var date = $(this).datepicker('getDate');
+                date.setDate(date.getDate() + 1); // Add one day to the selected check-in date
+                $("#checkoutfilter").datepicker("option", "minDate", date); // Set the minDate of check-out date picker to the next day
+            }
+        });
+
+        $("#checkoutfilter").datepicker({
+            minDate: today,
+            dateFormat: "yy-mm-dd",
+            onSelect: function (selectedDate) {
+                var date = $(this).datepicker('getDate');
+                date.setDate(date.getDate() - 1); // Subtract one day from the selected check-out date
+                $("#checkinfilter").datepicker("option", "maxDate", date); // Set the maxDate of check-in date picker to the previous day
+            }
+        });
+    });
+</script>

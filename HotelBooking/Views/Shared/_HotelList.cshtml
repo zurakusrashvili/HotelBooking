@@ -1,0 +1,106 @@
+﻿
+<!-- Filter -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="nav nav-pills" id="filters">
+                <li class="active"><a ng-click="getHotelByCity()">All</a></li>
+                    <li ng-repeat="city in cities">
+                    <a ng-click="getHotelByCity(city)">{{city}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Rooms -->
+    <section class="rooms mt100">
+        <div class="container">
+            <div class="row room-list fadeIn appear">
+                <!-- Room -->
+            <div class="col-sm-4" ng-repeat="hotel in hotels" style="cursor: pointer;">
+                    <div class="room-thumb">
+                    <img ng-src="{{hotel.featuredImage}}" alt="room 1" class="img-responsive" />
+                        <div class="mask">
+                            <div class="main">
+                                <h5>{{hotel.name}}</h5>
+                            </div>
+                           @* <div class="content">
+                                <p>
+                                    <span>A modern hotel room in Star Hotel</span> Nunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum.
+                                    malesuada metus.
+                                </p>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <ul class="list-unstyled">
+                                            <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
+                                            <li><i class="fa fa-check-circle"></i> Private balcony</li>
+                                            <li><i class="fa fa-check-circle"></i> Sea view</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <ul class="list-unstyled">
+                                            <li><i class="fa fa-check-circle"></i> Free Wi-Fi</li>
+                                            <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
+                                            <li><i class="fa fa-check-circle"></i> Bathroom</li>
+                                        </ul>
+                                    </div>
+                                </div>*@
+                        <button ng-click="changeActiveTab(webPages.Rooms); selectHotel(hotel)" class="btn btn-primary btn-block">View Rooms</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+<script>
+    $(function () {
+        var priceFrom = $("#price-from");
+        var priceTo = $("#price-to");
+        var priceFromLabel = $("#price-from-label");
+        var priceToLabel = $("#price-to-label");
+        var today = new Date();
+
+        $("#price-range-slider").slider({
+            range: true,
+            min: 0,
+            max: 1000,
+            values: [0, 1000],
+            slide: function (event, ui) {
+                priceFrom.val(ui.values[0]);
+                priceTo.val(ui.values[1]);
+                priceFromLabel.val(ui.values[0]);
+                priceToLabel.val(ui.values[1]);
+            }
+        });
+
+        priceFrom.val($("#price-range-slider").slider("values", 0));
+        priceTo.val($("#price-range-slider").slider("values", 1));
+        priceFromLabel.val($("#price-range-slider").slider("values", 0));
+        priceToLabel.val($("#price-range-slider").slider("values", 1));
+
+
+
+
+        $("#checkinfilter").datepicker({
+            minDate: today,
+            dateFormat: "yy-mm-dd",
+            onSelect: function (selectedDate) {
+                var date = $(this).datepicker('getDate');
+                date.setDate(date.getDate() + 1); // Add one day to the selected check-in date
+                $("#checkoutfilter").datepicker("option", "minDate", date); // Set the minDate of check-out date picker to the next day
+            }
+        });
+
+        $("#checkoutfilter").datepicker({
+            minDate: today,
+            dateFormat: "yy-mm-dd",
+            onSelect: function (selectedDate) {
+                var date = $(this).datepicker('getDate');
+                date.setDate(date.getDate() - 1); // Subtract one day from the selected check-out date
+                $("#checkinfilter").datepicker("option", "maxDate", date); // Set the maxDate of check-in date picker to the previous day
+            }
+        });
+    });
+</script>

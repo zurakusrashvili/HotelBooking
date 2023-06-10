@@ -24,7 +24,23 @@ namespace HotelBooking.Repository
         {
             return await _context.Hotels
                 .Include(q => q.Rooms)
+                .ThenInclude(q => q.Images)
                 .FirstOrDefaultAsync(q => q.Id == id);
+        }
+
+        public async Task<List<Hotel>> GetHotelByCity(string city)
+        {
+            return await _context.Hotels
+                .Where(h => h.City.ToLower() == city.ToLower())
+                .ToListAsync();
+        }
+
+        public async Task<List<string>> GetCities()
+        {
+            return await  _context.Hotels
+                .Select(h => h.City)
+                .Distinct()
+                .ToListAsync();
         }
 
        

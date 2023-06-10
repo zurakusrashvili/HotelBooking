@@ -1,195 +1,289 @@
 var LobbyClass = /** @class */ (function () {
     function LobbyClass() {
-        var lobbyApp = angular.module("lobbyApp", []);
+        var lobbyApp = angular.module("lobbyApp", ['ui.bootstrap']);
         lobbyApp.controller("lobbyController", [
             "$scope", "$http", function ($scope, $http) {
                 $.extend($scope, {
                     //getAllBasket
-                    basketGetAll: function () {
+                    // addToBasket()
+                    //addToApiBasket(data: BasketPostDto) {
+                    //    $.ajax({
+                    //        type: "POST",
+                    //        url: `https://${window.location.host}/api/Baskets/AddToBasket`,
+                    //        data: JSON.stringify(data),
+                    //        headers: {
+                    //            'Accept': 'application/json',
+                    //            'Content-Type': 'application/json'
+                    //        },
+                    //        dataType: 'json',
+                    //        success: function (response) {
+                    //        }
+                    //    });
+                    //},
+                    //createFilterParams(roomTypeId?: boolean, priceFrom?: number, priceTo?: number, guestsCount?: number, checkIn?: string, checkOut?: string) {
+                    //    let obj: any = {
+                    //    }
+                    //    if (vegeterian == true) {
+                    //        obj.vegeterian = vegeterian;
+                    //    }
+                    //    if (nuts == false) {
+                    //        obj.nuts = nuts;
+                    //    }
+                    //    if (spiciness !== null && spiciness !== -1) {
+                    //        obj.spiciness = spiciness
+                    //    }
+                    //    if (categoryId !== null) {
+                    //        obj.categoryId = categoryId;
+                    //    }
+                    //    return obj;
+                    //},
+                    // getFilteredProducts()
+                    //getFilteredProducts(vegeterian?: boolean, nuts?: boolean, spiciness?: number, categoryId?: number) {
+                    //    let object = $scope.createFilterParams(vegeterian, nuts, spiciness, categoryId)
+                    //    const params = '?' + new URLSearchParams(object).toString();
+                    //    $.ajax({
+                    //        type: "GET",
+                    //        url: `https://${window.location.host}/api/Products/GetFiltered${params}`,
+                    //        success: function (response) {
+                    //            $scope.products = response;
+                    //            $scope.$apply();
+                    //        }
+                    //    });
+                    //},
+                    //filterProducts(Id: number) {
+                    //    if (Id) {
+                    //        $scope.activeCategoryId = Id;
+                    //        $.ajax({
+                    //            type: "GET",
+                    //            url: `https://${window.location.host}/api/Products/GetFiltered?categoryId=${Id}`,
+                    //            success: function (response) {
+                    //                $scope.products = response;
+                    //                $scope.$apply()
+                    //            }
+                    //        });
+                    //    } else {
+                    //        $scope.getAllProducts()
+                    //    }
+                    //},
+                    hotelsGetAll: function () {
                         $.ajax({
                             type: "GET",
-                            url: "https://".concat(window.location.host, "/api/Baskets/GetAll"),
+                            url: "https://".concat(window.location.host, "/api/Hotels/GetAll"),
                             success: function (response) {
-                                $scope.basketProducts = response;
-                                $scope.calculateTotal();
+                                $scope.hotels = response;
+                                $scope.getCities();
+                                console.log($scope.hotels);
+                            }
+                        });
+                    },
+                    getHotelById: function (id) {
+                        $.ajax({
+                            type: "GET",
+                            url: "https://".concat(window.location.host, "/api/Hotels/GetHotel/").concat(id),
+                            success: function (response) {
+                                $scope.filteredRooms = response.rooms;
                                 $scope.$apply();
                             }
                         });
                     },
-                    //updateBasket()
-                    updateBasket: function (data) {
+                    getHotelByCity: function (city) {
+                        var link;
+                        if (city) {
+                            link = "https://".concat(window.location.host, "/api/Hotels/GetHotels?city=").concat(city);
+                        }
+                        else {
+                            link = "https://".concat(window.location.host, "/api/Hotels/GetAll");
+                        }
                         $.ajax({
-                            type: "PUT",
-                            url: "https://".concat(window.location.host, "/api/Baskets/UpdateBasket"),
-                            data: JSON.stringify(data),
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                            },
-                            dataType: 'json',
-                            success: function () {
+                            type: "GET",
+                            url: link,
+                            success: function (response) {
+                                $scope.hotels = response;
+                                $scope.$apply();
                             }
                         });
                     },
-                    // addToBasket()
-                    addToApiBasket: function (data) {
+                    getCities: function () {
+                        $.ajax({
+                            type: "GET",
+                            url: "https://".concat(window.location.host, "/api/Hotels/GetCities"),
+                            success: function (response) {
+                                $scope.cities = response;
+                                $scope.$apply();
+                            }
+                        });
+                    },
+                    getAllRooms: function () {
+                        $.ajax({
+                            type: "GET",
+                            url: "https://".concat(window.location.host, "/api/Rooms/GetAll"),
+                            success: function (response) {
+                                $scope.Rooms = response;
+                                $scope.$apply();
+                            }
+                        });
+                    },
+                    getRoomById: function (id) {
+                        $.ajax({
+                            type: "GET",
+                            url: "https://".concat(window.location.host, "/api/Rooms/GetRoom/").concat(id),
+                            success: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    },
+                    getAvailableRooms: function (dateFrom, dateTo) {
+                        $.ajax({
+                            type: "GET",
+                            url: "https://".concat(window.location.host, "/api/Rooms/GetAvailableRooms?from=").concat(dateFrom, "&to=").concat(dateTo),
+                            success: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    },
+                    getRoomTypes: function () {
+                        $.ajax({
+                            type: "GET",
+                            url: "https://".concat(window.location.host, "/api/Rooms/GetRoomTypes"),
+                            success: function (response) {
+                                console.log(response);
+                                $scope.roomTypes = response;
+                                $scope.$apply();
+                            }
+                        });
+                    },
+                    getFilteredRooms: function (filter) {
                         $.ajax({
                             type: "POST",
-                            url: "https://".concat(window.location.host, "/api/Baskets/AddToBasket"),
-                            data: JSON.stringify(data),
+                            url: "https://".concat(window.location.host, "/api/Rooms/GetFiltered"),
+                            data: JSON.stringify(filter),
                             headers: {
                                 'Accept': 'application/json',
                                 'Content-Type': 'application/json'
                             },
                             dataType: 'json',
                             success: function (response) {
+                                $scope.filteredRooms = response;
+                                console.log($scope.filteredRooms);
+                                $scope.$apply();
                             }
                         });
                     },
-                    addToBasket: function (data, quantity) {
-                        var productExistsInBasket = $scope.basketProducts.find(function (bskt) { return bskt.product.id === data.id; });
-                        if (productExistsInBasket) {
-                            var dto = {
-                                price: data.price,
-                                productId: data.id,
-                                quantity: productExistsInBasket.quantity += quantity
-                            };
-                            $scope.updateBasket(dto);
+                    filterByRoomType: function (id) {
+                        var link;
+                        var filter = {};
+                        if (id) {
+                            filter.roomTypeId = id;
                         }
-                        else {
-                            var dto = {
-                                price: data.price,
-                                productId: data.id,
-                                quantity: quantity
-                            };
-                            $scope.addToApiBasket(dto);
-                        }
-                    },
-                    increaseBasketQuantity: function (data) {
-                        var productExistsInBasket = $scope.basketProducts.find(function (bskt) { return bskt.product.id === data.product.id; });
-                        var dto = {
-                            price: data.product.price,
-                            productId: data.product.id,
-                            quantity: productExistsInBasket.quantity += 1
-                        };
-                        $scope.updateBasket(dto);
-                        $scope.calculateTotal();
-                    },
-                    decreaseBasketQuantity: function (data) {
-                        if (data.quantity <= 1)
-                            return;
-                        var productExistsInBasket = $scope.basketProducts.find(function (bskt) { return bskt.product.id === data.product.id; });
-                        var dto = {
-                            price: data.product.price,
-                            productId: data.product.id,
-                            quantity: productExistsInBasket.quantity -= 1
-                        };
-                        $scope.calculateTotal();
-                        $scope.updateBasket(dto);
-                    },
-                    // deleteProductFromBasket()
-                    deleteFromBasket: function (id) {
                         $.ajax({
-                            type: "DELETE",
-                            url: "https://".concat(window.location.host, "/api/Baskets/DeleteProduct/").concat(id),
+                            type: "POST",
+                            url: "https://".concat(window.location.host, "/api/Rooms/GetFiltered"),
+                            data: JSON.stringify(filter),
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            dataType: 'json',
                             success: function (response) {
-                                $scope.basketGetAll();
-                            }
-                        });
-                    },
-                    // getAllCategories()
-                    getAllCategories: function () {
-                        $.ajax({
-                            type: "GET",
-                            url: "https://".concat(window.location.host, "/api/Categories/GetAll"),
-                            success: function (response) {
-                                $scope.categories = response;
                                 console.log(response);
-                                $scope.$apply();
-                            }
-                        });
-                    },
-                    // getAllProducts
-                    getAllProducts: function () {
-                        $.ajax({
-                            type: "GET",
-                            url: "https://".concat(window.location.host, "/api/Products/GetAll"),
-                            success: function (response) {
-                                $scope.products = response;
-                                $scope.activeCategoryId = null;
-                                $scope.$apply();
-                            }
-                        });
-                    },
-                    createFilterParams: function (vegeterian, nuts, spiciness, categoryId) {
-                        var obj = {};
-                        if (vegeterian == true) {
-                            obj.vegeterian = vegeterian;
-                        }
-                        if (nuts == false) {
-                            obj.nuts = nuts;
-                        }
-                        if (spiciness !== null && spiciness !== -1) {
-                            obj.spiciness = spiciness;
-                        }
-                        if (categoryId !== null) {
-                            obj.categoryId = categoryId;
-                        }
-                        return obj;
-                    },
-                    // getFilteredProducts()
-                    getFilteredProducts: function (vegeterian, nuts, spiciness, categoryId) {
-                        var object = $scope.createFilterParams(vegeterian, nuts, spiciness, categoryId);
-                        var params = '?' + new URLSearchParams(object).toString();
-                        $.ajax({
-                            type: "GET",
-                            url: "https://".concat(window.location.host, "/api/Products/GetFiltered").concat(params),
-                            success: function (response) {
-                                $scope.products = response;
-                                $scope.$apply();
-                            }
-                        });
-                    },
-                    calculateTotal: function () {
-                        $scope.basketTotal = 0;
-                        $scope.basketProducts.forEach(function (pr) {
-                            $scope.basketTotal += (pr.price * pr.quantity);
-                        });
-                    },
-                    filterProducts: function (Id) {
-                        if (Id) {
-                            $scope.activeCategoryId = Id;
-                            $.ajax({
-                                type: "GET",
-                                url: "https://".concat(window.location.host, "/api/Products/GetFiltered?categoryId=").concat(Id),
-                                success: function (response) {
-                                    $scope.products = response;
-                                    $scope.$apply();
+                                $scope.filteredRooms = response;
+                                if (!id) {
+                                    $scope.Rooms = response;
                                 }
-                            });
-                        }
-                        else {
-                            $scope.getAllProducts();
-                        }
+                                $scope.$apply();
+                            }
+                        });
                     },
-                    applyFilter: function () {
-                        $scope.getFilteredProducts($scope.isVegeterianOn, !$scope.isNutsOn, $scope.spicinessCount, $scope.activeCategoryId);
+                    apiBookRoom: function (bookConfig) {
+                        console.log("ჯავშანი");
+                        $.ajax({
+                            type: "POST",
+                            url: "https://".concat(window.location.host, "/api/Booking"),
+                            data: JSON.stringify(bookConfig),
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            dataType: 'json',
+                            success: function (response) {
+                                alert("ოთახი წარმატებით დაიჯავშნა");
+                            },
+                            error: function (error) {
+                                alert(error.statusText);
+                            }
+                        });
                     },
-                    resetFilter: function () {
-                        $scope.getAllProducts();
-                        $scope.isNutsOn = null;
-                        $scope.isVegeterianOn = null;
-                        $scope.spicinessCount = -1;
-                        $scope.activeCategoryId = null;
+                    changeActiveTab: function (data) {
+                        $scope.activeTab = data;
+                    },
+                    applyRoomsFilter: function () {
+                        var formData = $('#filterForm').serializeArray();
+                        console.log(formData);
+                        var priceFrom, priceTo, roomType, checkIn, checkOut, guests;
+                        var filter = {};
+                        for (var _i = 0, formData_1 = formData; _i < formData_1.length; _i++) {
+                            var val = formData_1[_i];
+                            if (val.name == 'price-from' && Boolean(val.value)) {
+                                filter.priceFrom = parseInt(val.value);
+                            }
+                            if (val.name == 'price-to' && Boolean(val.value)) {
+                                filter.priceTo = parseInt(val.value);
+                            }
+                            if (val.name == 'room' && Boolean(val.value)) {
+                                filter.roomTypeId = parseInt(val.value);
+                            }
+                            if (val.name == 'checkinfilter' && Boolean(val.value)) {
+                                filter.checkIn = val.value;
+                            }
+                            if (val.name == 'checkoutfilter' && Boolean(val.value)) {
+                                filter.checkOut = val.value;
+                            }
+                            if (val.name == 'adults' && Boolean(val.value)) {
+                                filter.guestsCount = parseInt(val.value);
+                            }
+                        }
+                        $scope.getFilteredRooms(filter);
+                    },
+                    bookRoom: function (room) {
+                        var formData = $('#reservationform').serializeArray();
+                        console.log(formData);
+                        var bookObj = {
+                            checkInDate: formData[0].value,
+                            checkOutDate: formData[1].value,
+                            customerId: "1",
+                            customerName: formData[2].value,
+                            customerPhone: formData[3].value,
+                            isConfirmed: true,
+                            roomId: room.id,
+                        };
+                        $scope.apiBookRoom(bookObj);
+                    },
+                    selectRoom: function (room) {
+                        $(window).scrollTop(0);
+                        $scope.selectedForBooking = room;
+                        $scope.relatedRooms = $scope.filteredRooms.filter(function (r) {
+                            return r.hotelId = room.hotelId;
+                        }).slice(0, 3);
+                        console.log("related", $scope.relatedRooms, "rooms", $scope.Rooms);
+                    },
+                    selectHotel: function (hotel) {
+                        $(window).scrollTop(0);
+                        var filter = {};
+                        $scope.getHotelById(hotel.id);
                     },
                     init: function () {
-                        $scope.getAllProducts();
-                        $scope.getAllCategories();
-                        $scope.basketGetAll();
-                        $scope.isNutsOn = null;
-                        $scope.isVegeterianOn = null;
-                        $scope.spicinessCount = -1;
-                        $scope.activeCategoryId = null;
+                        var Pages = {
+                            Home: 0,
+                            Rooms: 1,
+                            Hotels: 2,
+                            Details: 3
+                        };
+                        $scope.selectedForBooking = undefined;
+                        $scope.webPages = Pages;
+                        $scope.activeTab = Pages.Home;
+                        $scope.getRoomTypes();
+                        $scope.hotelsGetAll();
+                        $scope.getAllRooms();
                     }
                 });
             }
