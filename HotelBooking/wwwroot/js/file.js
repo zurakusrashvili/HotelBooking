@@ -261,6 +261,10 @@ var LobbyClass = /** @class */ (function () {
                     selectRoom: function (room) {
                         $(window).scrollTop(0);
                         $scope.selectedForBooking = room;
+                        $scope.bookedDatesForSelectedRoom = [];
+                        $scope.selectedForBooking.bookedDates.forEach(function (date) {
+                            $scope.bookedDatesForSelectedRoom.push(date.date.split('T')[0]);
+                        });
                         $scope.relatedRooms = $scope.filteredRooms.filter(function (r) {
                             return r.hotelId = room.hotelId;
                         }).slice(0, 3);

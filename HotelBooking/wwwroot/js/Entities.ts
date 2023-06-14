@@ -10,6 +10,7 @@
     getHotelById: (id: number) => void,
     getHotelByCity: (city: string) => void,
     getCities: () => void,
+    bookedDatesForSelectedRoom: any[],
 
     getAllRooms: () => void,
     getRoomById: (id: number) => void,
@@ -66,6 +67,6 @@ interface Room {
     available: boolean,
     maximumGuests: number,
     roomTypeid: number,
-    bookedDates: any[],
+    bookedDates: { id: number, date: string, roomId: number }[],
     images: any[]
 }

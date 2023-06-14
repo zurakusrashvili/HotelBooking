@@ -2,7 +2,14 @@
 
 
 
-
+<style>
+    .ui-datepicker-unselectable.disabled-date span {
+        background: red !important;
+        color: white !important;
+        cursor: not-allowed !important;
+        pointer-events: visible !important;
+    }
+</style>
 
     <div class="container">
         <div class="row">
@@ -12,9 +19,6 @@
                 <carousel interval="3000">
                     <slide ng-repeat="slide in selectedForBooking.images" active="slide.image.active">
                         <img ng-src="{{slide.source}}">
-                        <div class="carousel-caption">
-                            <h4>Slide {{$index+1}}</h4>
-                        </div>
                     </slide>
                 </carousel>
             </div>
@@ -187,13 +191,12 @@
         });
 
         function disableSpecificDates(date) {
-            var disabledDates = [
-                "2023-06-15",
-                "2023-06-20",
-                "2023-06-25"
-            ];
+            var disabledDates = $('[ng-controller="lobbyController"]').scope().bookedDatesForSelectedRoom;
             var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-            return [disabledDates.indexOf(string) === -1];
+            if (disabledDates.indexOf(string) !== -1) {
+                return [false, "disabled-date", "Booked"];
+            }
+            return [true, ""];
         }
     });
  </script>

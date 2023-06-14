@@ -37,7 +37,7 @@
                 <ul class="nav nav-pills" id="filters">
                     <li class="active"><a ng-click="filterByRoomType()">All</a></li>
                     <li ng-repeat="type in roomTypes">
-                        <a ng-click="filterByRoomType(type.id)">{{type.name}}</a>
+                        <a ng-click="filterByRoomType(type.id)" style="cursor: pointer;">{{type.name}}</a>
                     </li>
                 </ul>
             </div>

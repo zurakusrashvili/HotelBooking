@@ -311,6 +311,13 @@
                     selectRoom(room: Room) {
                         $(window).scrollTop(0)
                         $scope.selectedForBooking = room;
+                        $scope.bookedDatesForSelectedRoom = []
+
+                        $scope.selectedForBooking.bookedDates.forEach((date) => {
+                            $scope.bookedDatesForSelectedRoom.push(date.date.split('T')[0])
+                        })
+
+                        
 
                         $scope.relatedRooms = $scope.filteredRooms.filter((r) => {
                             return r.hotelId = room.hotelId
